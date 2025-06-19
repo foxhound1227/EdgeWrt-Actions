@@ -57,7 +57,7 @@ exit 0' > package/luci-theme-material3/root/etc/uci-defaults/30_luci-theme-mater
 ./scripts/feeds install -a
 
 # 修改插件名字
-sed -i 's/"PassWall 2"/"PassWall"/g' `egrep "PassWall 2" -rl ./`
+#sed -i 's/"PassWall 2"/"PassWall"/g' `egrep "PassWall 2" -rl ./`
 
 # etc默认设置
 cp -a $GITHUB_WORKSPACE/scripts/etc/* package/base-files/files/etc/

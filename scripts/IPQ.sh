@@ -2,9 +2,9 @@
 sed -i 's/192.168.1.1/10.8.1.1/g' package/base-files/files/bin/config_generate
 
 # 修改主机名
-sed -i 's/ImmortalWrt/QWRT/g' package/base-files/files/bin/config_generate
-sed -i 's/ImmortalWrt/QWRT/g' include/version.mk
-sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
+sed -i 's/ImmortalWrt/FOXHOUND/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/FOXHOUND/g' include/version.mk
+sed -i 's/ImmortalWrt/FOXHOUND/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
 # 替换 SNAPSHOT 为 (QSDK 12.2)
 sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk

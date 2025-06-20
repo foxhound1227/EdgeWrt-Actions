@@ -1,6 +1,9 @@
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.12/g' package/base-files/files/bin/config_generate
 
+# 修改默认主题
+sed -i "s/luci-theme-bootstrap/luci-theme-argon/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
+
 # 修改主机名
 sed -i 's/ImmortalWrt/QWRT/g' package/base-files/files/bin/config_generate
 sed -i 's/ImmortalWrt/QWRT/g' include/version.mk
@@ -15,6 +18,9 @@ sed -i 's/HWE/NPU/g' target/linux/qualcommax/base-files/sbin/cpuusage
 sed -i '86d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 sed -i "s/+ ' \/ ' : '') + (luciversion ||/:/g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
+# 移除要替换的包
+rm -rf feeds/luci/themes/luci-theme-argon
+
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
   branch="$1" repourl="$2" && shift 2
@@ -25,30 +31,14 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
+# luci-theme-argon
+git clone --depth=1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
 
 # 修正 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
-
-# luci-theme-material3
-git clone -b main --depth 1 --single-branch https://github.com/AngelaCooljx/luci-theme-material3 package/luci-theme-material3
-rm -rf package/luci-theme-material3/{.git,Readme.md}
-sed -i 's|../../luci.mk|$(TOPDIR)/feeds/luci/luci.mk|' package/luci-theme-material3/Makefile
-sed -i '/uci -q delete luci.themes.Material3Red/a \	uci set luci.main.mediaurlbase=\x27/luci-static/bootstrap\x27' package/luci-theme-material3/Makefile
-rm -rf package/luci-theme-material3/root/etc/uci-defaults/30_luci-theme-material3
-echo '#!/bin/sh
-if [ "$PKG_UPGRADE" != 1 ]; then
-	uci get luci.themes.material3 >/dev/null 2>&1 || \
-	uci batch <<-EOF
-		set luci.themes.material3=/luci-static/material3
-		set luci.main.mediaurlbase=/luci-static/material3
-		commit luci
-	EOF
-fi
-exit 0' > package/luci-theme-material3/root/etc/uci-defaults/30_luci-theme-material3 && chmod +x package/luci-theme-material3/root/etc/uci-defaults/30_luci-theme-material3
-# luci-theme-material3
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a

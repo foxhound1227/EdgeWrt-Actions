@@ -11,8 +11,7 @@ sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi
 
 # 替换 SNAPSHOT 为 (QSDK 12.2)
 sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk
-sed -i 's/ECM:/ /g' target/linux/qualcommax/base-files/sbin/cpuusage
-sed -i 's/HWE/NPU/g' target/linux/qualcommax/base-files/sbin/cpuusage
+
 
 # 删除luci首页显示
 sed -i '86d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js

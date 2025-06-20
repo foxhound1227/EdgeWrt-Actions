@@ -10,11 +10,8 @@ sed -i 's/ImmortalWrt/QWRT/g' include/version.mk
 sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
 
 # 修改WIFI设置
-sed -i '/-5G/d' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 sed -i 's/OWRT/QWRT/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
-sed -i 's/12345678/12345678/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
-
-
+sed -i 's/12345678/password/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 
 # 替换 SNAPSHOT 为 (QSDK 12.2)
 sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk

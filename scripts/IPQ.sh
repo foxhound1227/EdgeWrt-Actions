@@ -64,3 +64,6 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/sha
 #修改qca-nss-drv启动顺序
 sed -i 's/START=.*/START=85/g' feeds/nss_packages/qca-nss-drv/files/qca-nss-drv.init
 
+# 关闭RFC1918 
+sed -i 's/option rebind_protection 1/option rebind_protection 0/g' package/network/services/dnsmasq/files/dhcp.conf
+

@@ -38,7 +38,7 @@ function git_sparse_clone() {
 
 # luci-theme-argon
 git clone --depth=1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
-sed -i 's/primary: #5e72e4/primary: #6bd7d5/g' package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/css/cascade.css
+sed -i 's/primary: #5e72e4/primary: #7fdfff/g' package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/css/cascade.css
 
 # passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall

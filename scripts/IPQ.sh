@@ -12,6 +12,7 @@ sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi
 # 修改WIFI设置
 sed -i 's/OWRT/QWRT/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 sed -i 's/12345678/password/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
+sed -i 's/set_default disassoc_low_ack 1/set_default disassoc_low_ack 0/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
 
 # 替换 SNAPSHOT 为 (QSDK 12.2)
 sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk
@@ -37,6 +38,7 @@ function git_sparse_clone() {
 
 # luci-theme-argon
 git clone --depth=1 https://github.com/sbwml/luci-theme-argon package/luci-theme-argon
+sed -i 's/primary: #5e72e4/primary: #6bd7d5/g' package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/css/cascade.css
 
 # passwall2
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
@@ -64,6 +66,6 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/sha
 #修改qca-nss-drv启动顺序
 sed -i 's/START=.*/START=85/g' feeds/nss_packages/qca-nss-drv/files/qca-nss-drv.init
 
-# 关闭RFC1918 
+# 关闭RFC1918
 sed -i 's/option rebind_protection 1/option rebind_protection 0/g' package/network/services/dnsmasq/files/dhcp.conf
 

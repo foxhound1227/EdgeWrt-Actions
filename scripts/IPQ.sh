@@ -58,6 +58,7 @@ cp -a $GITHUB_WORKSPACE/scripts/etc/* package/base-files/files/etc/
 sed -i 's/OWRT/QWRT/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 sed -i 's/12345678/password/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 sed -i 's/set_default disassoc_low_ack 1/set_default disassoc_low_ack 0/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
+sed -i 's/set_default skip_inactivity_poll 0/set_default skip_inactivity_poll 1/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
 
 #修改qca-nss-drv启动顺序
 sed -i 's/START=.*/START=85/g' feeds/nss_packages/qca-nss-drv/files/qca-nss-drv.init

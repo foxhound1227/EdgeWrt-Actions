@@ -34,13 +34,8 @@ sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi
 sed -i '86d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 sed -i "s/+ ' \/ ' : '') + (luciversion ||/:/g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
-# 替换 SNAPSHOT 为 (QSDK 12.2)
-sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk
-sed -i 's/ECM:/ /g' target/linux/qualcommax/base-files/sbin/cpuusage
-sed -i 's/HWE/NPU/g' target/linux/qualcommax/base-files/sbin/cpuusage
-
-# 关闭RFC1918 
-sed -i 's/option rebind_protection 1/option rebind_protection 0/g' package/network/services/dnsmasq/files/dhcp.conf
+# 替换 SNAPSHOT 为空
+sed -i 's/SNAPSHOT/ /g' include/version.mk
 
 # 修改插件名字
 sed -i 's/"PassWall 2"/"PassWall"/g' `egrep "PassWall 2" -rl ./`

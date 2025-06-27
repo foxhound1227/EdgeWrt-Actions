@@ -1,16 +1,16 @@
-name: IPQ807X
+name: MTK7986
 on:
   workflow_dispatch:
   schedule:
-    - cron: 30 18 * * 1
+    - cron: 30 18 * * 2
 env:
-  REPO_URL: https://github.com/VIKINGYFY/immortalwrt
-  REPO_BRANCH: main
-  CONFIG_FILE: config/IPQ807X.config
-  DIY_SCRIPT: scripts/IPQ.sh
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
+  REPO_BRANCH: openwrt-24.10-6.6
+  CONFIG_FILE: config/MTK7986.config
+  DIY_SCRIPT: scripts/MTK.sh
   CACHE_TOOLCHAIN: true
   FIRMWARE_RELEASE: true
-  FIRMWARE_TAG: IPQ807X
+  FIRMWARE_TAG: MTK7986
   TZ: Asia/Shanghai
 
 jobs:

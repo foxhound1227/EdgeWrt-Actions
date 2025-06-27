@@ -1,6 +1,6 @@
 <h1>EdgeWrt — 固件云编译</h1>
 
-固件构成：[![ImmortalWrt](https://img.shields.io/badge/ImmortalWrt-ImmortalWrt-ff69b4.svg?style=flat&logo=appveyor)](https://github.com/immortalwrt/immortalwrt)  [![VIKINGYFY](https://img.shields.io/badge/IPQ-VIKINGYFY-32C955.svg?style=flat&logo=appveyor)](https://github.com/VIKINGYFY/immortalwrt)
+固件构成：[![ImmortalWrt](https://img.shields.io/badge/ImmortalWrt-ImmortalWrt-ff69b4.svg?style=flat&logo=appveyor)](https://github.com/immortalwrt/immortalwrt)  [![VIKINGYFY](https://img.shields.io/badge/IPQ-VIKINGYFY-32C955.svg?style=flat&logo=appveyor)](https://github.com/VIKINGYFY/immortalwrt)  [![padavanonly](https://img.shields.io/badge/MTK-padavanonly-9588ff.svg?style=flat&logo=appveyor)](https://github.com/padavanonly/immortalwrt-mt798x-6.6)
 
 ## 特别提示 [![](https://img.shields.io/badge/-个人免责声明-FFFFFF.svg)](#特别提示-)
 

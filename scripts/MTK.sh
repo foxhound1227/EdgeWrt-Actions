@@ -34,10 +34,8 @@ sed -i 's/ImmortalWrt/QWRT/g' package/network/config/wifi-scripts/files/lib/wifi
 sed -i '86d' feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 sed -i "s/+ ' \/ ' : '') + (luciversion ||/:/g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 
-# 替换 SNAPSHOT 为 (QSDK 12.2)
-sed -i 's/SNAPSHOT/(QSDK 12.2 R7)/g' include/version.mk
-sed -i 's/ECM:/ /g' target/linux/qualcommax/base-files/sbin/cpuusage
-sed -i 's/HWE/NPU/g' target/linux/qualcommax/base-files/sbin/cpuusage
+# 替换 24.10-SNAPSHOT 为 空
+sed -i 's/24.10-SNAPSHOT/ /g' include/version.mk
 
 # 关闭RFC1918
 sed -i 's/option rebind_protection 1/option rebind_protection 0/g' package/network/services/dnsmasq/files/dhcp.conf
@@ -49,8 +47,7 @@ sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/sha
 cp -a $GITHUB_WORKSPACE/scripts/etc/* package/base-files/files/etc/
 
 # 修改WIFI设置
-sed -i 's/OWRT/QWRT/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
-sed -i 's/12345678/password/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
+sed -i 's/ImmortalWrt/QWRT/g' package/mtk/applications/mtwifi-cfg/files/mtwifi.sh
 sed -i 's/set_default disassoc_low_ack 1/set_default disassoc_low_ack 0/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
 sed -i 's/set_default skip_inactivity_poll 0/set_default skip_inactivity_poll 1/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
 

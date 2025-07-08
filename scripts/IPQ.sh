@@ -9,8 +9,8 @@ function git_sparse_clone() {
 }
 
 # passwall2
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
-# git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
+git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 
 # 修正 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
@@ -45,14 +45,15 @@ sed -i 's/option rebind_protection 1/option rebind_protection 0/g' package/netwo
 # 修改插件位置
 sed -i 's/vpn/services/g' feeds/luci/applications/luci-app-zerotier/root/usr/share/luci/menu.d/luci-app-zerotier.json
 
+# 修改插件名字
+sed -i 's/"PassWall 2"/"PassWall"/g' `egrep "PassWall 2" -rl ./`
+
 # etc默认设置
 cp -a $GITHUB_WORKSPACE/scripts/etc/* package/base-files/files/etc/
 
 # 修改WIFI设置
 sed -i 's/OWRT/QWRT/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
 sed -i 's/12345678/password/g' target/linux/qualcommax/base-files/etc/uci-defaults/990_set-wireless.sh
-sed -i 's/set_default disassoc_low_ack 1/set_default disassoc_low_ack 0/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
-sed -i 's/set_default skip_inactivity_poll 0/set_default skip_inactivity_poll 1/g' package/network/config/wifi-scripts/files/lib/netifd/hostapd.sh
 
 #修改qca-nss-drv启动顺序
 sed -i 's/START=.*/START=85/g' feeds/nss_packages/qca-nss-drv/files/qca-nss-drv.init

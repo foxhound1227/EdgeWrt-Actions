@@ -8,10 +8,16 @@ function git_sparse_clone() {
   cd .. && rm -rf $repodir
 }
 
-# passwall2
+# passwall2  singbox版
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 sed -i 's/xray-core +geoview +v2ray-geoip +v2ray-geosite/sing-box +geoview/g' package/luci-app-passwall2/luci-app-passwall2/Makefile
+sed -i '44d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
+
+# 预制singbox的db数据库
+wget -P package/base-files/files/usr/share/singbox https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.db
+wget -P package/base-files/files/usr/share/singbox https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.db
+
 
 # 修正 Makefile 路径问题
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}

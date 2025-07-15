@@ -13,6 +13,7 @@ git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages packa
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 sed -i 's/xray-core +geoview +v2ray-geoip +v2ray-geosite/sing-box +geoview/g' package/luci-app-passwall2/luci-app-passwall2/Makefile
 sed -i '/Geo View/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i '/App Update/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
 sed -i '/Access control/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
 sed -i '/Other Settings/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
 # 预制Sing-Box数据库

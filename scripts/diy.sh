@@ -9,9 +9,8 @@ function git_sparse_clone() {
 }
 
 # PassWall2-Sing-Box版
-git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
-sed -i 's/xray-core +geoview +v2ray-geoip +v2ray-geosite/sing-box +geoview/g' package/luci-app-passwall2/luci-app-passwall2/Makefile
+sed -i '/geosite/d' package/luci-app-passwall2/luci-app-passwall2/Makefile
 sed -i 's/Core/Sing-Box/g' package/luci-app-passwall2/luci-app-passwall2/luasrc/view/passwall2/global/status.htm
 sed -i '74s/Xray/sing-box/g' package/luci-app-passwall2/luci-app-passwall2/root/usr/share/passwall2/0_default_config
 sed -i '10,42d' package/luci-app-passwall2/luci-app-passwall2/luasrc/model/cbi/passwall2/client/rule.lua
@@ -19,6 +18,7 @@ sed -i '/Geo View/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/contro
 sed -i '/App Update/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
 sed -i '/Access control/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
 sed -i '/Other Settings/d' package/luci-app-passwall2/luci-app-passwall2/luasrc/controller/passwall2.lua
+sed -i '/nofile/a\	procd_set_param limits memory="100000 150000"' feeds/packages/net/sing-box/files/sing-box.init
 # 预制Sing-Box数据库
 # wget -P package/base-files/files/usr/share/singbox https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.db
 # wget -P package/base-files/files/usr/share/singbox https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.db

@@ -157,7 +157,7 @@ jobs:
           - 🌐 默认地址: 192.168.12.1
           - 🔑 默认密码: 无
           - 🌐 WiFi名称: QWRT
-          - 🔑 WiFi密码: 无
+          - 🔑 WiFi密码: password
           ### 🧊 固件版本
           - 主源码更新记录
           - ${{ env.COMMIT_AUTHOR }}

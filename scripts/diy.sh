@@ -11,6 +11,7 @@ function git_sparse_clone() {
 # PassWall2-Sing-Box版
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
 sed -i '/geosite/d' package/luci-app-passwall2/luci-app-passwall2/Makefile
+sed -i '/chinadns-ng/d' package/luci-app-passwall2/luci-app-passwall2/Makefile
 sed -i 's/Core/Sing-Box/g' package/luci-app-passwall2/luci-app-passwall2/luasrc/view/passwall2/global/status.htm
 sed -i '74s/Xray/sing-box/g' package/luci-app-passwall2/luci-app-passwall2/root/usr/share/passwall2/0_default_config
 sed -i '10,42d' package/luci-app-passwall2/luci-app-passwall2/luasrc/model/cbi/passwall2/client/rule.lua

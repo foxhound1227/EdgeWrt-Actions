@@ -1,3 +1,6 @@
+# 添加其他仓库的插件 然后去config里添加上对应的插件名
+# git clone  https://github.com/gdy666/luci-app-lucky package/lucky
+
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.12.12/g' package/base-files/files/bin/config_generate
 
